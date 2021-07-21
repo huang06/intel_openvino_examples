@@ -1,0 +1,25 @@
+---
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        version: 2021.3
+    image: my-company.co:1443/public/security_barrier_camera_demo:ubuntu20-2021.3
+    environment:
+      - DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      - /dev/dri
+    command: ["bash", "-ic", "./omz_demos_build/intel64/Release/security_barrier_camera_demo \
+-i src/vehicle_shanghai_fps30.mp4 \
+-m models/vehicle-license-plate-detection-barrier-0106/FP32/vehicle-license-plate-detection-barrier-0106.xml \
+-m_va models/vehicle-attributes-recognition-barrier-0042/FP32/vehicle-attributes-recognition-barrier-0042.xml \
+-m_lpr models/license-plate-recognition-barrier-0001/FP32/license-plate-recognition-barrier-0001.xml \
+-d CPU \
+-d_va CPU \
+-d_lpr CPU \
+# -no_show"]
