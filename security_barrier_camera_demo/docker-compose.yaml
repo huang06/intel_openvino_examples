@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
       args:
         version: 2021.3
-    image: my-company.co:1443/public/security_barrier_camera_demo:ubuntu20-2021.3
+    image: my-repo/public/security_barrier_camera_demo:latest
     environment:
       - DISPLAY
     volumes:
